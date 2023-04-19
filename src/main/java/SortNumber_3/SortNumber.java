@@ -8,17 +8,18 @@ import static java.util.Arrays.stream;
 
 public class SortNumber {
     public static void main(String[] args) {
-        String[] digits = new String[]{ "1, 2, 0", "4, 5" };
-        List<String> numb = new ArrayList<>();
-        for(String sT:digits){
-            String[] tempArray = sT.split(",");
-            for(String sA:tempArray)
-                numb.add(sA.replace(" ", ""));
-        }
-        List<String> sortNumber = numb.stream().sorted().collect(Collectors.toList());
-        System.out.println(sortNumber);
+        String[] digits = new String[]{"1, 2, 0", "4, 5"};
+        Stream<String> sort =
+                Arrays.asList(digits)
+                        .stream()
+                        .flatMap(str -> stream(str.split(", ")))
+                        .map(Integer::valueOf)
+                        .sorted()
+                        .map(String::valueOf)
+                        .collect(Collectors.joining(", ")).lines();
 
+        List<String> sorteredNumber = sort.collect(Collectors.toList());
 
-
+        System.out.println(sorteredNumber);
     }
 }

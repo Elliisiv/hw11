@@ -13,8 +13,8 @@ public class NameList {
     public static String processNames() {
         List<String> names = Arrays.asList("John", "Tom", "Nina", "Arya", "Zak");
         return IntStream.range(0, names.size())
-                .filter(i -> i % 2 == 0)
-                .mapToObj(i -> (i + 1) + ". " + names.get(i))
+                .filter(i -> i % 2 != 0)
+                .mapToObj(i -> i + ". " + names.get(i))
                 .collect(Collectors.joining(", "));
     }
 }
